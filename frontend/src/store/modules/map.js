@@ -4,8 +4,8 @@ const map = {
     state: {
         map: null,
         center: {
-            lng: 13.748784,
-            lat: 51.068561
+            lng:  13.746175,
+            lat: 51.062868
         },
         zoom: 15,
         minZoom: 4,

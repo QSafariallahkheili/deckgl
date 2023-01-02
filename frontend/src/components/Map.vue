@@ -34,6 +34,9 @@ import { HTTP } from '../utils/http-common';
 import {TreeModel} from '../utils/TreeModel';
 import {MapboxLayer} from '@deck.gl/mapbox';
 import {ScenegraphLayer} from '@deck.gl/mesh-layers';
+import { PolygonLayer } from "@deck.gl/layers";
+import {BuildingFilter} from "../deckglFilter/building-filter"
+
 
 
 
@@ -52,14 +55,36 @@ onMounted(() => {
         maxPitch: store.state.map.maxPitch
     });
     store.state.map.map.on('load', function(){
+     let buildingLayer 
       HTTP
-        .get('')
-        .then(response=>{
-            console.log(response)
+      .post('/get-buildings-from-db', '0')
+      .then(response=>{
+        
+        buildingLayer = new MapboxLayer({
+          id: "osm-buildings",
+          type: PolygonLayer,
+          data: response.data.features,
+          getPolygon: (d) => d.geometry.coordinates,
+          stroked: true,
+          filled: true,
+          extruded: true,
+          getElevation: (feature) => feature.properties.estimatedheight,
+          getFillColor: (d) => [255,0,0,255],
+          getLineColor: [0, 0, 0, 255],
+          wireframe: false,
+          pickable: true,
+          extensions: [new BuildingFilter()],
+          elevationScale: 1,
+   
         })
-    })
-})
-
+        store.state.map.map.addLayer(buildingLayer);
+        
+              
+      })
+      
+    
+    }) })
+  
 
 // threejs layer
 const addThreejsShape = ()=>{
