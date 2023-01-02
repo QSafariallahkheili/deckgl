@@ -1,3 +1,5 @@
 fastapi==0.79.0
 uvicorn[standard]
 psycopg2
+requests==2.28.1
+osmtogeojson==0.0.2

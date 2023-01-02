@@ -26,3 +26,20 @@ def get_table_names():
   cur.close()
   conn.close()
   return tables
+
+def get_buildings_from_db(projectId):
+  connection = connect()
+  cursor = connection.cursor()
+  get_building_query =f''' select json_build_object(
+        'type', 'FeatureCollection',
+        'features', json_agg(ST_AsGeoJSON(building.*)::json)
+        )
+        from building
+        where project_id = '{projectId}'
+      ;
+  '''
+  cursor.execute(get_building_query)
+  building = cursor.fetchall()[0][0]
+  cursor.close()
+  connection.close()
+  return building
