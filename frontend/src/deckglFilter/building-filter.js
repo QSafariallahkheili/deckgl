@@ -31,17 +31,21 @@ export class BuildingFilter extends LayerExtension {
                            
                         }
                         else {
-                            if (vElevatt <= 20.){
-                                color = vec4(0., 0., 1., 0.8);
+                            if (vElevatt <= 10.){
+                                color = vec4(0., 1.0, 0., 0.8);
+                            }
+                            else if (vElevatt > 10. && vElevatt < 20.){
+                               
+                                color = vec4(1., 1., 0., 1.);
                             }
                             else if (vElevatt > 20. && vElevatt < 30.){
                                 vec3 mixcolor = vec3(0.0);
                                 
                                 mixcolor = mix(vec3(1.0,0.0,0.0), vec3(0.0,0.0,1.0), 0.5);
-                                color = vec4(mixcolor, 1.);
+                                color = vec4(1., .65, 0., 1.);
                             }
                             else {
-                                color = vec4(1., 0., 0., 1.);
+                                color = vec4(1., 0., 0. , 1.);
                             }
                         }
                             
@@ -57,9 +61,12 @@ export class BuildingFilter extends LayerExtension {
             elevatt: {
               size: 1,
               accessor: 'getElevation'
-            }
+            },
+
         })
     }
+    
+    
     updateState(params) {
         const { heightvalue = 3. } = params.props;
         for (const model of this.getModels()) {

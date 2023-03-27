@@ -43,3 +43,18 @@ def get_buildings_from_db(projectId):
   cursor.close()
   connection.close()
   return building
+
+def get_data_from_db_as_geobuf(tableName, projectId):
+  connection = connect()
+  cursor = connection.cursor()
+  query = f'''
+      SELECT ST_ASGeobuf(qs, 'geom')
+      FROM (SELECT * FROM {tableName} 
+      WHERE project_id='{projectId}') AS qs
+      LIMIT 1; 
+  '''
+  cursor.execute(query)
+  dataa = cursor.fetchone()
+  cursor.close()
+  connection.close()
+  return dataa
