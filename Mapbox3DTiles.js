@@ -19768,11 +19768,11 @@ var Mapbox3DTiles = (function (exports) {
 		  this.frustum = frustum;
 		  this.cameraPosition = cameraPosition;
 
-		  /*if(map.transform._zoom<16)
+		  if(map.transform._zoom<16)
 		  {
 				this.unload(true);
 				return;
-		  }*/
+		  }
 
 		  /*this.load();
 		  for (let i=0; i<this.children.length;i++) {
