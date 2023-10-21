@@ -1,0 +1,39 @@
+{
+  "root": {
+    "children": [
+      {
+        "geometricError": 0.0,
+        "boundingVolume": {
+          "region": [
+            0.08215449,
+            0.91590412,
+            0.08231128,
+            0.91599961,
+            0.0,
+            10.0
+          ]
+        },
+        "content": {
+          "uri": "tiles/0_1_1_0.i3dm"
+        }
+      }
+    ],
+    "geometricError": 500.0,
+    "refine": "REPLACE",
+    "boundingVolume": {
+      "region": [
+        0.0819977,
+        0.91590412,
+        0.08356556,
+        0.91685847,
+        0.0,
+        10.0
+      ]
+    }
+  },
+  "geometricError": 500.0,
+  "asset": {
+    "generator": "i3dm.export 1.9.0.0 (https://github.com/geodan/i3dm.export) - 2021",
+    "version": "1.0"
+  }
+}
